@@ -1,0 +1,244 @@
+:root {
+  --primary-color: #2e7d32;      /* Un verde bosco più profondo e professionale */
+  --accent-color: #4CAF50;       /* Verde brillante per gli elementi attivi */
+  --light-bg: #f5f7f5;           /* Sfondo leggermente grigio/verde chiarissimo */
+  --card-bg: #ffffff;
+  --text-color: #2c3e50;         /* Testo scuro ma morbido */
+  --text-muted: #7f8c8d;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--card-bg);
+  padding: 20px 40px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;    /* Include il padding nel calcolo del 100% */
+  text-align:center; /* Centra il contenuto della navbar */
+  justify-content: space-between; /* Allinea il logo a sinistra (stile moderno) */
+  align-items: center;
+}
+
+.navbar .logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+/* Titoli */
+h1 {
+  text-align: center;
+  color: #1a1a1a;        /* Modificato: Nero profondo e moderno, meno aggressivo del #000000 puro */
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+/* Form di ricerca (Restyling con Bottone Sotto) */
+.search-form {
+  max-width: 550px;       /* Stringiamo il form per renderlo più elegante e centrato */
+  margin: 0 auto 50px auto;
+  text-align: center;     /* Centra gli elementi in linea */
+}
+
+.search-form input {
+  display: block;
+  width: 100%;            /* Prende tutta la larghezza del contenitore (550px) */
+  padding: 16px 20px;
+  font-size: 1.05rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;     /* Angoli arrotondati uniformi */
+  outline: none;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 15px;    /* Crea lo spazio verticale prima del bottone */
+}
+
+.search-form input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15);
+}
+
+.search-form button {
+  display: inline-block;  /* Permette al bottone di non allungarsi a schermo intero */
+  min-width: 180px;       /* Dimensione minima per renderlo solido */
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;     /* Stesso raggio di curvatura dell'input */
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(46, 125, 50, 0.2);
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.search-form button:hover {
+  background-color: var(--accent-color);
+  box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
+  transform: translateY(-1px); /* Piccolo effetto di sollevamento */
+}
+
+.search-form button:active {
+  transform: translateY(1px);
+}
+
+/* Messaggi di caricamento o errore */
+.message {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin: 20px 0;
+}
+
+/* Grid Responsiva per le Card */
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  width: 100%;
+}
+
+/* Card Ricetta */
+.recipe-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recipe-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.recipe-card-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.recipe-card-body h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.25rem;
+  color: var(--text-color);
+  /* Tronca i titoli troppo lunghi su 2 righe per mantenere le card allineate */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.8rem; 
+}
+
+.btn {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 10px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Pagina Dettaglio */
+.recipe-detail {
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
+  max-width: 800px; /* Mantiene la lettura della ricetta comoda e centrata */
+  margin: 0 auto;   /* La centra nello schermo gigante */
+}
+
+.detail-img {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 25px;
+  transition: color 0.2s;
+  padding: 0;
+}
+
+.btn-back:hover {
+  color: var(--primary-color);
+}
+
+.recipe-info {
+  display: block;
+  background-color: var(--light-bg);
+  padding: 15px 25px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.recipe-info p {
+  margin: 5px 0;
+}
+
+.ingredients-list {
+  padding-left: 20px;
+  margin-bottom: 35px;
+}
+
+.ingredients-list li {
+  margin-bottom: 10px;
+}
+
+.instructions {
+  line-height: 1.8;
+  color: #34495e;
+}
+
+/* Ottimizzazione Mobile */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px 15px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .recipe-detail {
+    padding: 20px;
+  }
+  
+  .search-form {
+    width: 100%;
+  }
+  
+  .search-form button {
+    width: 100%; /* Su smartphone il bottone prende tutta la larghezza per facilitare il click */
+  }
+}
