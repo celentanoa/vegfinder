@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+# 🌱 VegFinder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Applicazione web Single Page Application (SPA) reattiva, tipizzata e performante, dedicata alla ricerca ed esplorazione di ricette esclusivamente vegetariane. Il sistema si integra direttamente con le **Spoonacular Food API** per la scomposizione e l'estrazione delle schede tecniche dei piatti.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Funzionalità Principali
 
-## React Compiler
+* **Filtro Rigido Nativo (Sicurezza Alimentare):** Chiamate API configurate per intercettare a monte ed elaborare esclusivamente risultati idonei al regime vegetariano (`diet=vegetarian`), escludendo filtri ridondanti lato client.
+* **Persistenza dello Stato (Cache di Ricerca):** Implementazione di **React Context API** per memorizzare lo storico dei dati estratti e la query testuale. Navigando all'indietro dalla pagina di dettaglio, l'utente ritrova la Home intatta, azzerando le chiamate API ripetute.
+* **Routing Dinamico:** Gestione delle transizioni e delle viste mediante **React Router v6** con parametri d'URL dinamici (`/recipe/:id`), garantendo l'isolamento strutturale della scheda tecnica.
+* **Layout Reattivo Full-Width:** Interfaccia grafica moderna sviluppata a tutto schermo tramite **CSS Grid Layout** nativo. La disposizione sfrutta logiche fluide adattive (`repeat(auto-fill, minmax(280px, 1fr))`), eliminando l'uso di librerie pesanti esterne.
+* **UX Curata ed Elegante:** * Barra di ricerca compatta con disposizione verticale (bottone di invio posizionato sotto l'input di testo).
+  * Logo principale `🌱 VegFinder` interattivo e cliccabile posizionato in Navbar per il ritorno istantaneo alla schermata principale.
+  * Allineamento geometrico automatico delle card tramite troncamento multilinea controllato dei titoli delle ricette.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Stack Tecnologico
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **Core Framework:** React 18 (Componenti funzionali basati su Hooks: `useState`, `useEffect`, `useContext`, `useParams`).
+* **Linguaggio:** TypeScript (Configurazione rigida integrata con il supporto a `verbatimModuleSyntax` per l'ottimizzazione e pulizia dei tipi nel bundle).
+* **Build Tool & Server Locale:** Vite (Compilazione ultra-rapida guidata da moduli ES nativi).
+* **HTTP Client:** Axios (Richieste asincrone assecondate dal monitoraggio visivo degli stati di `loading` ed `error`).
+* **Navigazione:** React Router (`BrowserRouter`, `Routes`, `Route`, `Link`).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📦 Struttura del Progetto
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```text
+vegetarian-recipe/
+├── public/
+│   └── _redirects          # Configurazione delle rotte per prevenire l'errore 404 al refresh su Netlify
+├── src/
+│   ├── components/
+│   │   └── Navbar.tsx      # Barra di navigazione superiore con Logo cliccabile
+│   ├── context/
+│   │   └── RecipeContext.tsx # Centralizzazione dello stato globale e della cache dei dati
+│   ├── pages/
+│   │   ├── Home.tsx         # Schermata principale: form verticale e griglia fluida
+│   │   └── RecipeDetail.tsx # Schermata di dettaglio: analisi ingredienti e istruzioni HTML
+│   ├── types/
+│   │   └── index.ts        # Dichiarazione formale delle Interfacce e dei Modelli dati TypeScript
+│   ├── App.tsx             # Root Component: configurazione del Router e del Context Provider
+│   ├── App.css             # Foglio di stile globale, variabili CSS e ottimizzazioni responsive
+│   └── main.tsx            # Entry-point dell'applicazione
+├── index.html              # Template HTML di base (configurato con il titolo VegFinder)
+├── tsconfig.json           # File di configurazione del compilatore TypeScript
+└── package.json            # Gestione delle dipendenze e degli script npm
