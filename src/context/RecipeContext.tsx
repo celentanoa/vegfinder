@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import type { ReactNode } from 'react'; // <-- Importazione solo di tipo separata
+import type { ReactNode } from 'react'; 
 import { type RecipeShort } from '../types';
 
 interface RecipeContextType {
